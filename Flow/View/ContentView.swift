@@ -10,6 +10,9 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var selectedTab: Tab = .house
+    @AppStorage("ajdw") var isNew = true
+    @State var user = ""
+    @AppStorage("myname") var myname = ""
     
     init(){
         UITabBar.appearance().isHidden = true
@@ -22,17 +25,26 @@ struct ContentView: View {
             VStack{
                 switch selectedTab {
                 case .house:
-                    HomeScreenView(username: "Name")
-                case .leaf:
-                    HomeScreenTwo(username: "Name")
+                    HomeScreenTwo(username: myname == "" ? "User0" : myname)
+                        .onAppear(){
+                            user = myname
+                            print(user)
+                        }
+                case .newspaper:
+                    NewsView()
                 }
+            
             }
             
-            VStack {
+            VStack{
                 Spacer()
                 CustomTabBarView(selectedTab: $selectedTab)
             }
+            
         }
+        .fullScreenCover(isPresented: $isNew, onDismiss: {
+            myname = User.username
+        }, content: LoginView.init)
         
         
     }

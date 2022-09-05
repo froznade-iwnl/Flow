@@ -1,0 +1,18 @@
+[
+  {
+    "id" : 1,
+    "publisher": "The New York Times",
+    "url": "https://www.nytimes.com/2022/08/23/well/mind/burnout-depression-symptoms-treatment.html",
+    "title": "How Can I Tell if I’m Depressed or Burned Out?",
+    "summary": "The concept of burnout comes from workplace psychology, said Angela Neal-Barnett, a psychology professor at Kent State University and author of “Soothe Your Nerves: The Black Woman’s Guide to Understanding and Overcoming Anxiety, Panic and Fear.” Typically, therapists associate burnout with work, although researchers are also studying parental burnout, when caregivers feel chronically exhausted. Burnout has become pervasive in the cultural lexicon, especially during the pandemic. On TikTok, the trend of “quiet quitting,” or doing the bare minimum at a job, has gone viral, as people share stories about feeling burned out by long hours and a punishing “hustle culture.”",
+    "imageURL": "https://static01.nyt.com/images/2022/08/30/multimedia/ASKWELL-BURNOUT-DEPRESSION1/ASKWELL-BURNOUT-DEPRESSION1-superJumbo.jpg?quality=75&auto=webp"
+  },
+  {
+    "id":2,
+    "publisher": "CNBC",
+    "url": "https://www.cnbc.com/2022/08/15/4-books-to-help-overcome-social-anxiety-recommended-by-therapists-.html",
+    "title": "4 books to help you conquer your social anxiety, recommended by therapists",
+    "summary": "If you suffer from social anxiety, you know how it feels at the exact moment the anxious thoughts start to creep in: You’re out with friends or co-workers and your heart starts racing. Suddenly you’re too overwhelmed to contribute, even a little, to the conversation.",
+    "imageURL": "https://image.cnbcfm.com/api/v1/image/106994687-1640802460311-people-at-an-office-party-earing-cakes-and-cookies_t20_x61gym.jpg?v=1640802576&w=740&h=416&ffmt=webp"
+  }
+]

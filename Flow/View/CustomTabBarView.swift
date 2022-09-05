@@ -9,7 +9,7 @@ import SwiftUI
 
 enum Tab: String, CaseIterable {
     case house
-    case leaf
+    case newspaper
 
 }
                 
@@ -24,9 +24,9 @@ struct CustomTabBarView: View {
     private var tabColor: Color {
         switch selectedTab {
         case .house:
-            return .blue
-        case .leaf:
             return .green
+        case .newspaper:
+            return .blue
         }
     }
     
@@ -50,7 +50,7 @@ struct CustomTabBarView: View {
             }
         }
         .frame(width: nil, height: 60)
-        .background(.thinMaterial)
+        .background(.thickMaterial)
         .cornerRadius(10)
         .padding()
         
