@@ -2,7 +2,7 @@
 //  LoginView.swift
 //  Flow
 //
-//  Created by CTSS Students on 5/9/22.
+//  Created by Raditya Aryo Wahyudi on 5/9/22.
 //
 
 import SwiftUI

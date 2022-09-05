@@ -2,7 +2,7 @@
 //  ArticlesListView.swift
 //  Flow
 //
-//  Created by CTSS Students on 4/9/22.
+//  Created by Raditya Aryo Wahyudi on 4/9/22.
 //
 
 import SwiftUI

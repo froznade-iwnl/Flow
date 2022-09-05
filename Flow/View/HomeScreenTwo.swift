@@ -2,20 +2,20 @@
 //  HomeScreenTwo.swift
 //  Flow
 //
-//  Created by Raditya on 4/9/22.
+//  Created by Raditya Aryo Wahyudi on 4/9/22.
 //
 
 import SwiftUI
 
 struct HomeScreenTwo: View {
     var username: String
-    @State var isCheckInDone = false
+    @AppStorage("c") var isCheckInDone = false
     @State var checkInToggle = false
     @AppStorage("dLI") var daysLoggedIn = 0
-    @State private var todayEmoji = ""
+    @AppStorage("tdy") var todayDate: Date = Date.now
+    @AppStorage("e") private var todayEmoji = ""
     @State private var opac = 1.0
-    @AppStorage("dn") var datass = ""
-    @State private var data = [Double](repeating: 0, count: 7)
+    @State private var data = UserDefaults.standard.object(forKey: "myKey") as? [Double] ?? [Double]()
     
     var body: some View {
         
@@ -23,8 +23,7 @@ struct HomeScreenTwo: View {
         
         ZStack{
             
-            Color.BGColor
-                .ignoresSafeArea(.all)
+            BackgroundLiveView()
             
             VStack(alignment: .center){
                 
@@ -41,8 +40,8 @@ struct HomeScreenTwo: View {
                 }
                 
                 HStack {
-                    Text("\(Date.now, style: .date) \(daysLoggedIn)")
-                        .foregroundColor(.gray)
+                    Text("\(Date.now, style: .date)")
+                        .foregroundColor(.black)
                         .font(.caption)
                     
                     Spacer()
@@ -61,18 +60,15 @@ struct HomeScreenTwo: View {
                     if isCheckInDone {
                         
                         VStack{
-                            Text("You are feeling")
-                                .font(.title)
+                           
+                            Text("You're feeling \(todayEmoji) today!")
+                                .font(.system(.title, design: .rounded))
                                 
-                            Text(todayEmoji == "" ? "🤯":todayEmoji)
-                                .font(.system(size: 64))
                             
-                            Text("today")
-                                .font(.title)
+                            Text("Don't forget to check in again tomorrow!")
+                                .font(.caption)
+                                .padding(.top, 8)
                             
-                            Button("test"){
-                                isCheckInDone.toggle()
-                            }
                         }.opacity(opac)
                         
                         
@@ -88,16 +84,17 @@ struct HomeScreenTwo: View {
                             HStack{
                                 
                                 Button {
-                                    moodHistory[index] = 1
+                                    moodHistory[index] = 5.0
                                     daysLoggedIn += 1
                                     print(moodHistory)
                                     opac = 0
                                     todayEmoji = "😁"
                                     isCheckInDone = true
-                                    withAnimation(.easeIn(duration: 1)){
+                                    withAnimation(.easeOut(duration: 1)){
                                         opac = 1
                                     }
                                     UserDefaults.standard.set(moodHistory, forKey: "myKey")
+                                    data = UserDefaults.standard.object(forKey: "myKey") as? [Double] ?? [Double]()
                         
                                 } label: {
                                     Text("😁")
@@ -111,15 +108,16 @@ struct HomeScreenTwo: View {
                                 
                                 
                                 Button {
-                                    moodHistory[index] = 2
+                                    moodHistory[index] = 4.0
                                     daysLoggedIn += 1
                                     print(moodHistory)
                                     todayEmoji = "😀"
                                     opac = 0
                                     isCheckInDone = true
-                                    withAnimation(.easeIn(duration: 1)){
+                                    withAnimation(.easeIn(duration: 0.5)){
                                         opac = 1
                                     }
+                                    data = UserDefaults.standard.object(forKey: "myKey") as? [Double] ?? [Double]()
                                     UserDefaults.standard.set(moodHistory, forKey: "myKey")
                                 } label: {
                                     Text("😀")
@@ -132,7 +130,7 @@ struct HomeScreenTwo: View {
                                 Spacer()
                                 
                                 Button {
-                                    moodHistory[index] = 3
+                                    moodHistory[index] = 3.0
                                     opac = 0
                                     daysLoggedIn += 1
                                     print(moodHistory)
@@ -141,6 +139,7 @@ struct HomeScreenTwo: View {
                                     withAnimation(.easeIn(duration: 1)){
                                         opac = 1
                                     }
+                                    data = UserDefaults.standard.object(forKey: "myKey") as? [Double] ?? [Double]()
                                     UserDefaults.standard.set(moodHistory, forKey: "myKey")
                                 } label: {
                                     Text("😐")
@@ -153,7 +152,7 @@ struct HomeScreenTwo: View {
                                 Spacer()
                                 
                                 Button {
-                                    moodHistory[index] = 4
+                                    moodHistory[index] = 2.0
                                     daysLoggedIn += 1
                                     print(moodHistory)
                                     todayEmoji = "🙁"
@@ -162,6 +161,7 @@ struct HomeScreenTwo: View {
                                     withAnimation(.easeIn(duration: 1)){
                                         opac = 1
                                     }
+                                    data = UserDefaults.standard.object(forKey: "myKey") as? [Double] ?? [Double]()
                                     UserDefaults.standard.set(moodHistory, forKey: "myKey")
                                 } label: {
                                     Text("🙁")
@@ -174,7 +174,7 @@ struct HomeScreenTwo: View {
                                 Spacer()
                                 
                                 Button {
-                                    moodHistory[index] = 5
+                                    moodHistory[index] = 1.0
                                     daysLoggedIn += 1
                                     print(moodHistory)
                                     todayEmoji = "😣"
@@ -183,6 +183,7 @@ struct HomeScreenTwo: View {
                                     withAnimation(.easeIn(duration: 1)){
                                         opac = 1
                                     }
+                                    data = UserDefaults.standard.object(forKey: "myKey") as? [Double] ?? [Double]()
                                     UserDefaults.standard.set(moodHistory, forKey: "myKey")
                                 } label: {
                                     Text("😣")
@@ -196,7 +197,7 @@ struct HomeScreenTwo: View {
                                 
                         }
                         .padding()
-                        .opacity(opac)
+                        
                     }
                 }
                 
@@ -209,7 +210,8 @@ struct HomeScreenTwo: View {
                         .foregroundColor(.TextColor)
                         .font(.system(.headline, design: .rounded))
                     
-                    LineGraphView()
+                LineGraphView(datas: data)
+                    .opacity(opac)
 //                LineChartView(title: "", data: datas)
 //                    .frame(height: 221)
                     
@@ -217,14 +219,12 @@ struct HomeScreenTwo: View {
                 HStack {
                     Spacer()
                     
-                    Button {
-                            print("Tapped")
-                        } label: {
-                            Text("View data for the past month")
-                            .font(.footnote)
-                            .foregroundColor(.blue)
-                            .underline()
-                    }
+                   
+                        Text("This is your record for the past month")
+                        .font(.footnote)
+                        .foregroundColor(.teal)
+                        .underline()
+                    
                     
                 }
                   
@@ -234,6 +234,12 @@ struct HomeScreenTwo: View {
                 }
                 .padding()
                 
+        }.onAppear(){
+            print(Calendar.current.isDate(todayDate, equalTo: Date.now, toGranularity: .day))
+            if Calendar.current.isDate(todayDate, equalTo: Date.now, toGranularity: .day) == false{
+                isCheckInDone = false
+                todayDate = Date.now
+            }
         }
     }
 }

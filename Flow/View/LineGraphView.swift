@@ -2,22 +2,30 @@
 //  LineGraphView.swift
 //  Flow
 //
-//  Created by Raditya on 4/9/22.
+//  Created by Raditya Aryo Wahyudi on 4/9/22.
 //
 
 import SwiftUI
 
-var data = [1, 2, 3, 4, 5, 3, 1]
+
+
+let data = UserDefaults.standard.object(forKey: "myKey") as? [Double] ?? [Double]()
+
 
 struct LineGraphView: View {
     
-    private var datas: [Double] = data.map {Double($0)/5}
+//    var data: [Any]
+    var datas: [Double]
+//    var datas = Array(data.prefix(5)).map {$0/5}
+//    var datas = [0.1, 0.2, 0.3, 0.4]
     
     var body: some View {
      
         VStack {
-            LineChartView(title: "", data: datas)
+            
+            LineChartView(title: "", data: datas.map{$0/5})
                 .frame(height: 221)
+            
             
         }
         
@@ -27,6 +35,6 @@ struct LineGraphView: View {
 
 struct LineGraphView_Previews: PreviewProvider {
     static var previews: some View {
-        LineGraphView()
+        LineGraphView(datas: data)
     }
 }

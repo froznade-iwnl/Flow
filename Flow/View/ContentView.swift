@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Flow
 //
-//  Created by CTSS Students on 4/9/22.
+//  Created by Raditya Aryo Wahyudi on 4/9/22.
 //
 
 import SwiftUI
@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var selectedTab: Tab = .house
-    @AppStorage("ajdw") var isNew = true
+    @AppStorage("haveRegistered") var isNew = true
     @State var user = ""
     @AppStorage("myname") var myname = ""
     

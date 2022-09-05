@@ -2,7 +2,7 @@
 //  LineChartView.swift
 //  Flow
 //
-//  Created by CTSS Students on 5/9/22.
+//  Created by Raditya Aryo Wahyudi on 5/9/22.
 //
 
 import SwiftUI
@@ -12,12 +12,16 @@ struct ChartAreaView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 12.0)
-                .fill(Color.white)
-                .shadow(radius: 4, y: 4)
-            
+//            RoundedRectangle(cornerRadius: 12.0)
+//                .fill(Color.white)
+//                .shadow(radius: 4, y: 4)
+//            
             LineShape(yValues: data)
                 .stroke(Color.TextColor, lineWidth: 2.0)
+                .padding()
+                .background(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .shadow(radius: 4, y: 4)
         }
     }
 }
@@ -52,6 +56,6 @@ struct LineChartView: View {
 
 struct LineChartView_Previews: PreviewProvider {
     static var previews: some View {
-        LineChartView(title: "WACC", data: [0.1, 0.2, 0.3, 0.4, 0.5])
+        LineChartView(title: "WACC", data: [1, 2, 3, 4, 5, 3, 6])
     }
 }
