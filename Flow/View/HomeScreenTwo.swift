@@ -215,7 +215,7 @@ struct HomeScreenTwo: View {
                     Spacer()
                     
                 
-                    Text("Your Weekly Emotional Status Data")
+                    Text("Your Emotional Status Data")
                         .foregroundColor(.black)
                         .font(.system(.headline, design: .rounded))
                     
