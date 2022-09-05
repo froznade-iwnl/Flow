@@ -9,7 +9,7 @@ import SwiftUI
 
 
 
-let data = UserDefaults.standard.object(forKey: "myKey") as? [Double] ?? [Double]()
+var data = UserDefaults.standard.object(forKey: "myKey") as? [Double] ?? [Double]()
 
 
 struct LineGraphView: View {

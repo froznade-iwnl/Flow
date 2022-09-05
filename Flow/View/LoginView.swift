@@ -19,7 +19,7 @@ struct LoginView: View {
         
         ZStack {
             
-            Color.BGColor
+            BackgroundLiveView()
                 .ignoresSafeArea(.all)
             
             RoundedRectangle(cornerRadius: 12)

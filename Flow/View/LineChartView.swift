@@ -17,7 +17,7 @@ struct ChartAreaView: View {
 //                .shadow(radius: 4, y: 4)
 //            
             LineShape(yValues: data)
-                .stroke(Color.TextColor, lineWidth: 2.0)
+                .stroke(Color.green, lineWidth: 2.0)
                 .padding()
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 12))

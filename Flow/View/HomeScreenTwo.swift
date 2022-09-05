@@ -7,13 +7,21 @@
 
 import SwiftUI
 
+extension Color {
+    
+    static let AppColor = Color("AppColor")
+    static let BGColor = Color("BGColor")
+    static let TextColor = Color("TextColor")
+    
+}
+
 struct HomeScreenTwo: View {
     var username: String
-    @AppStorage("c") var isCheckInDone = false
+    @AppStorage("haveCheckedIn") var isCheckInDone = false
     @State var checkInToggle = false
-    @AppStorage("dLI") var daysLoggedIn = 0
-    @AppStorage("tdy") var todayDate: Date = Date.now
-    @AppStorage("e") private var todayEmoji = ""
+    @AppStorage("daysCount") var daysLoggedIn = 0
+    @AppStorage("todayDate") var todayDate: Date = Date.now
+    @AppStorage("emojiOfTheDay") private var todayEmoji = ""
     @State private var opac = 1.0
     @State private var data = UserDefaults.standard.object(forKey: "myKey") as? [Double] ?? [Double]()
     
@@ -24,6 +32,7 @@ struct HomeScreenTwo: View {
         ZStack{
             
             BackgroundLiveView()
+                .ignoresSafeArea()
             
             VStack(alignment: .center){
                 
@@ -207,11 +216,10 @@ struct HomeScreenTwo: View {
                     
                 
                     Text("Your Weekly Emotional Status Data")
-                        .foregroundColor(.TextColor)
+                        .foregroundColor(.black)
                         .font(.system(.headline, design: .rounded))
                     
-                LineGraphView(datas: data)
-                    .opacity(opac)
+                LineGraphView(datas: data.count == 0 ? [0.0] : data)
 //                LineChartView(title: "", data: datas)
 //                    .frame(height: 221)
                     
@@ -222,7 +230,7 @@ struct HomeScreenTwo: View {
                    
                         Text("This is your record for the past month")
                         .font(.footnote)
-                        .foregroundColor(.teal)
+                        .foregroundColor(.blue)
                         .underline()
                     
                     
