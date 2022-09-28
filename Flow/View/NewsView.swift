@@ -11,23 +11,27 @@ struct NewsView: View {
     @StateObject var data = ReadData()
     @State private var opac = 0.0
     
-    init(){
-        UITableView.appearance().backgroundColor = UIColor(Color.BGColor)
-    }
+//    init(){
+//        UITableView.appearance().backgroundColor = UIColor(Color.BGColor)
+//    }
     
     var body: some View {
         
         NavigationView {
-            
-            VStack{
-                ArticlesListView()
-                    .opacity(opac)
-            }
-            .navigationTitle("News")
-            .environmentObject(data)
-            .onAppear(){
-                withAnimation(.easeIn(duration: 1)) {
-                    opac = 1
+            ZStack{
+                
+                BackgroundLiveView()
+                
+                VStack{
+                    ArticlesListView()
+                        .opacity(opac)
+                }
+                .navigationTitle("News")
+                .environmentObject(data)
+                .onAppear(){
+                    withAnimation(.easeIn(duration: 1)) {
+                        opac = 1
+                    }
                 }
             }
         }
